@@ -178,7 +178,7 @@ async def responses(message, userid, user):
         os.execl(sys.executable, sys.executable, *sys.argv)
     elif user not in Admins and message.content.startswith(("bacalhau.reboot", "bacalhau.reboot", "bacalhau, reboot")):
         await message.channel.send("Hey " + f"<@{userid}>"+ ", that's an admin only command!")
-    if user in Admins and message.content.startswith(("bacalhau.take five", "bacalhau, take five")):
+    if user in Admins and message.content.startswith(("bacalhau, go to sleep", "Bacalhau, go to sleep")):
        await message.channel.send("I'll be back!")
        time.sleep(300)
        await message.channel.send("My 5 minutes are up, I'm back!")
@@ -202,10 +202,10 @@ async def responses(message, userid, user):
         await message.channel.send(line)
     elif user not in Admins and message.content.startswith(("bacalhau.log-file", "bacalhau.log-file")):
         await message.channel.send("Hey, " + f"<@{userid}>" + ", only admins can use that command!")
-    if "bacalhau?" in message.content or "bacalhau?" in message.content:
+    if "bacalhau?" in message.content or "Bacalhau?" in message.content:
         await message.channel.send("I'm alive! Kinda... 🤖")
     if gm_true:
-        await message.channel.send("Good morning!!🌞")
+        await message.channel.send("Good morning!! <:codthink:977711037287632996>")
     if thanks_true and bacalhau_true:
         await message.channel.send("You're welcome, " + f"<@{userid}>" + " !")
     if sorry_true and bacalhau_true:
@@ -243,6 +243,7 @@ async def on_message(message):
     threading.Thread(target=timer).start()
     user = message.author.name
     userid = message.author.id
+    Admins = ["El Madeirense", "Garrett"]
     global stop
     stop = False
     try:
@@ -258,7 +259,7 @@ async def on_message(message):
             print(user)
     except:
         print("Couldn't get username")
-    if user == "El Madeirense" and message.content.startswith("bacalhau.STOP!") or message.content.startswith("bacalhau.STOP!") or message.content.startswith("bacalhau, STOP!") or message.content.startswith("bacalhau, STOP!"):
+    if user == "El Madeirense" and message.content.startswith("bacalhau.STOP!") or message.content.startswith("Bacalhau.STOP!") or message.content.startswith("bacalhau, STOP!") or message.content.startswith("bacalhau, STOP!"):
         await message.channel.send("🎣")
         stop = True
         time.sleep(1)
