@@ -31,9 +31,5 @@ TRPG
 
 Useful links:
 
-Tutorial de bot do Discord em JavaScript – Programe um bot do Discord e hospede-o gratuitamente
-https://www.freecodecamp.org/portuguese/news/tutorial-de-bot-do-discord-em-javascript-programe-um-bot-do-discord-e-hospede-o-gratuitamente/
-
-
-Discord.js README:
-https://discord.js.org/#/docs/discord.js/stable/class/ReactionEmoji?scrollTo=animated
+Discord.py API:
+https://discordpy.readthedocs.io/en/stable/api.html#discord.Member.joined_at
