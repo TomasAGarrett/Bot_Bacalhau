@@ -1,7 +1,7 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    bacalhau_Bot.py                                       :+:      :+:    :+:    #
+#    bacalhau_Bot.py                                    :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: jbuny-fe <jbuny-fe@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
@@ -23,11 +23,11 @@ import json
 client = discord.Client()
 issue_list = ["issue", "issues", "problem", "problems"]
 how_list = ["how to", "how do i", "i'm having problems", "im having problems", "im having a", "i'm having a"]
-thanks = ["thank you", "thank u", "thanks"]
-bacalhau = ["bacalhau", "bacalhau"]
-sorry = ["Sorry", "sorry"]
-gm = ["gm", "good morning"]
-hey = ["hey", "hello", "heyy"]
+thanks = ["thank you", "thank u", "thanks", "thx", "obrigado", "obrigada"]
+bacalhau = ["bacalhau", "Bacalhau"]
+sorry = ["Sorry", "sorry", "desculpa", "Desculpa", "I'm sorry", "im sorry", "Im sorry"]
+gm = ["gm", "good morning", "Bom dia", "bom dia"]
+hey = ["hey", "hello", "heyy", "Boas", "boas", "ola", "olá"]
 
 def timer():  # starts once the program is started
     try:
@@ -74,7 +74,7 @@ async def on_ready():
             print("Unable to create a log file, please check permissions and space left on device.❌")
             await channel.send("Unable to create a log file, please check permissions and space left on device.❌")
             pass
-    await channel.send("All systems online, bacalhau is up and running 🦾")
+    await channel.send("All systems online, bacalhau is up and swimming :person_swimming:")
     print('{0.user} is now online! ✅\n'.format(client))
 
 async def responses(message, userid, user):
@@ -171,10 +171,17 @@ async def responses(message, userid, user):
         color=discord.Color.blue())
         embed.set_thumbnail(url="https://cdn-icons-png.flaticon.com/512/25/25231.png")
         await message.channel.send(f"<@{userid}>", embed=embed)
+    if message.content.startswith("bacalhau.git"):
+        embed=discord.Embed(title="GlitchyMako's GitHub",
+        url="https://github.com/GlitchyMako",
+        description="Hey " +f"<@{userid}>" + ", my code isn't on GitHub but you can check other projects from my creator!",
+        color=discord.Color.blue())
+        embed.set_thumbnail(url="https://cdn-icons-png.flaticon.com/512/25/25231.png")
+        await message.channel.send(embed=embed)
     if user in Admins and message.content.startswith(("bacalhau.reboot", "bacalhau.reboot", "bacalhau, reboot")):
         await message.channel.send("Rebooting process inicialized! ❌ bacalhau will be down for a few seconds")
         print("bacalhau is rebooting...")
-        await message.channel.send("Shutting down... ☠️ ")
+        await message.channel.send("Shutting down... <:codhold:977712053101928448>")
         os.execl(sys.executable, sys.executable, *sys.argv)
     elif user not in Admins and message.content.startswith(("bacalhau.reboot", "bacalhau.reboot", "bacalhau, reboot")):
         await message.channel.send("Hey " + f"<@{userid}>"+ ", that's an admin only command!")
@@ -207,7 +214,7 @@ async def responses(message, userid, user):
     if gm_true:
         await message.channel.send("Good morning!! <:codthink:977711037287632996>")
     if thanks_true and bacalhau_true:
-        await message.channel.send("You're welcome, " + f"<@{userid}>" + " !")
+        await message.channel.send("<:uwu:977715133113577492>")
     if sorry_true and bacalhau_true:
         await message.channel.send("No problem, " + f"<@{userid}>" + ". Don't worry about it!")
     if message.content.startswith(("bacalhau.progress", "bacalhau.progress", "bacalhau, progress", "bacalhau, progress")):
@@ -237,6 +244,8 @@ async def responses(message, userid, user):
         await message.channel.purge()
     elif user not in Admins and message.content.startswith("bacalhau.purge") or message.content.startswith("Bacalhau.purge"):
         await message.channel.send("Hey, " + f"<@{userid}>" + ", only admins can use that command!")
+    if "fuck bacalhau" in message.content:
+        await message.channel.send("<:middlepepe:977715133491064952>")
     
 @client.event
 async def on_message(message):
@@ -260,7 +269,7 @@ async def on_message(message):
     except:
         print("Couldn't get username")
     if user == "El Madeirense" and message.content.startswith("bacalhau.STOP!") or message.content.startswith("Bacalhau.STOP!") or message.content.startswith("bacalhau, STOP!") or message.content.startswith("bacalhau, STOP!"):
-        await message.channel.send("🎣")
+        await message.channel.send("<:codhold:977712053101928448>")
         stop = True
         time.sleep(1)
         exit()
