@@ -6,7 +6,7 @@
 #    By: jbuny-fe <jbuny-fe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/30 11:31:29 by jbuny-fe          #+#    #+#              #
-#    Updated: 2022/05/26 15:07:43 by jbuny-fe         ###   ########.fr        #
+#    Updated: 2022/05/26 15:17:08 by jbuny-fe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,26 +126,12 @@ async def responses(message, userid, user):
                 **   - bacalhau.STOP! -->** Completely shuts me down, should only be used as a last resort \n",
         color=discord.Color.blue())
         await message.channel.send("Heyy " + f"<@{userid}>" + "\n",embed=embed)
-    if message.content.startswith(("bacalhau.login", "bacalhau.login")):
-        embed=discord.Embed(title="bacalhau In The Sky login page",
-        url="https://go.bacalhauinthesky.education/learn/login", 
-        description="Welcome to the bacalhau In The Sky Platform", 
-        color=discord.Color.blue())
-        embed.set_thumbnail(url="https://media-exp1.licdn.com/dms/image/C4D0BAQE6Qyi6gobkNg/company-logo_200_200/0/1635152143581?e=2147483647&v=beta&t=JNhdpt_fKozF3-AnxO9T9b3DOsrZN2aJsQjXJxWFwcY")
-        await message.channel.send(f"<@{userid}>", embed=embed)
     if message.content.startswith(("bacalhau.calendar", "bacalhau.calendar")):
         embed=discord.Embed(title="Live Sessions Calendar",
         url="https://calendar.google.com/event?action=TEMPLATE&tmeid=MXNkbGowb3NuczQ1bmlzMGdlZGVxbHQ2ZXFfMjAyMjA1MTJUMTgwMDAwWiBjb21tdW5pdHktbWFuYWdlbWVudEBtaWxlc2ludGhlc2t5LmVkdWNhdGlvbg&tmsrc=community-management%40bacalhauinthesky.education&scp=ALL", 
         description="Hey " + f"<@{userid}>" + ", here you have the calendar for the Live Sessions of this Jorney", 
         color=discord.Color.blue())
         embed.set_thumbnail(url="https://logosmarcas.net/wp-content/uploads/2021/04/Google-Calendar-Logo.png")
-        await message.channel.send(f"<@{userid}>", embed=embed)
-    if message.content.startswith(('bacalhau.wiki', 'bacalhau.wiki')):
-        embed=discord.Embed(title="bacalhau Wiki",
-        url="https://demo.bacalhauinthesky.education/learn/wiki/digital-experience-part-time-april-2022", 
-        description="Hey " + f"<@{userid}>" + ", here you have the bacalhau In The Sky Platform wiki and FAQs", 
-        color=discord.Color.blue())
-        embed.set_thumbnail(url="https://media-exp1.licdn.com/dms/image/C4D0BAQE6Qyi6gobkNg/company-logo_200_200/0/1635152143581?e=2147483647&v=beta&t=JNhdpt_fKozF3-AnxO9T9b3DOsrZN2aJsQjXJxWFwcY")
         await message.channel.send(f"<@{userid}>", embed=embed)
     if message.content.startswith("bacalhau.git"):
         embed=discord.Embed(title="Bacalhau on GitHub",
@@ -238,6 +224,14 @@ async def responses(message, userid, user):
 async def on_message(message):
     activity = discord.Game(name="Pro Fishing Simulator")
     await client.change_presence(status=discord.Status.idle, activity=activity)
+    # Setting `Playing ` status
+    #await bot.change_presence(activity=discord.Game(name="a game"))
+    # Setting `Streaming ` status
+    #await bot.change_presence(activity=discord.Streaming(name="My Stream", url=my_twitch_url))
+    # Setting `Listening ` status
+    #await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="a song"))
+    # Setting `Watching ` status
+    #await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="a movie"))
     await client.change_presence(status=discord.Status.online)
     threading.Thread(target=timer).start()
     user = message.author.name
