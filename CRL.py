@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    bacalhau_Bot.py                                    :+:      :+:    :+:    #
+#    CRL.py                                             :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jbuny-fe <jbuny-fe@student.42lisboa.com>   +#+  +:+       +#+         #
+#    By: jbuny-fe <jbuny-fe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/30 11:31:29 by jbuny-fe          #+#    #+#              #
-#    Updated: 2022/05/12 12:05:50 by jbuny-fe         ###   ########.fr        #
+#    Updated: 2022/05/26 15:07:43 by jbuny-fe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,6 @@ import requests
 import json
 
 client = discord.Client()
-issue_list = ["issue", "issues", "problem", "problems"]
-how_list = ["how to", "how do i", "i'm having problems", "im having problems", "im having a", "i'm having a"]
 thanks = ["thank you", "thank u", "thanks", "thx", "obrigado", "obrigada"]
 bacalhau = ["bacalhau", "Bacalhau"]
 sorry = ["Sorry", "sorry", "desculpa", "Desculpa", "I'm sorry", "im sorry", "Im sorry"]
@@ -87,18 +85,6 @@ async def responses(message, userid, user):
             break
         else:
             thanks_true = False
-    for word in issue_list:
-        if word in message.content.lower():
-            issue_True = True
-            break
-        else:
-            issue_True = False
-    for word in how_list:
-        if word in message.content.lower():
-            how_to = True
-            break
-        else:
-            how_to = False
     for word in bacalhau:
         if word in message.content.lower():
             bacalhau_true = True
@@ -130,9 +116,6 @@ async def responses(message, userid, user):
     if message.content.startswith(('bacalhau.help', "bacalhau.help")):
         embed=discord.Embed(title="**Here are a few commands you can use with me:**",
         description="**User commands:**\n\
-                **   - bacalhau.wiki -->** Sends the link to the bacalhau In The Sky wiki and FAQs\n\
-                **   - bacalhau.login -->** Sends the link the the bacalhau In The Sky login page\n\
-                **   - bacalhau.calendar -->** Sends the link to the Google Calendar events on the Live Sessions \n\
                 **   - bacalhau.progress -->** Shows the current Journey progress in time %\n\
                 **   - bacalhau.uptime -->** Shows how long I've been awake for\n\
                 **   - bacalhau.take five -->** I'll go to sleep for five minutes, in case you want to say my name without calling me\n\
@@ -165,16 +148,21 @@ async def responses(message, userid, user):
         embed.set_thumbnail(url="https://media-exp1.licdn.com/dms/image/C4D0BAQE6Qyi6gobkNg/company-logo_200_200/0/1635152143581?e=2147483647&v=beta&t=JNhdpt_fKozF3-AnxO9T9b3DOsrZN2aJsQjXJxWFwcY")
         await message.channel.send(f"<@{userid}>", embed=embed)
     if message.content.startswith("bacalhau.git"):
-        embed=discord.Embed(title="BunyMan's GitHub",
-        url="https://github.com/BunyMan",
-        description="Hey " +f"<@{userid}>" + ", my code isn't on GitHub but you can check other projects from my creator!",
+        embed=discord.Embed(title="Bacalhau on GitHub",
+        url="https://github.com/BunyMan/Bot_Bacalhau.git",
+        description="Hey " +f"<@{userid}>" + ", here's what makes me work and down here are my creators 👇",
         color=discord.Color.blue())
         embed.set_thumbnail(url="https://cdn-icons-png.flaticon.com/512/25/25231.png")
-        await message.channel.send(f"<@{userid}>", embed=embed)
-    if message.content.startswith("bacalhau.git"):
+        await message.channel.send(embed=embed)
+        embed=discord.Embed(title="BunyMan's GitHub",
+        url="https://github.com/BunyMan",
+        description="⚡️kachow⚡️",
+        color=discord.Color.blue())
+        embed.set_thumbnail(url="https://cdn-icons-png.flaticon.com/512/25/25231.png")
+        await message.channel.send(embed=embed)
         embed=discord.Embed(title="GlitchyMako's GitHub",
         url="https://github.com/GlitchyMako",
-        description="Hey " +f"<@{userid}>" + ", my code isn't on GitHub but you can check other projects from my creator!",
+        description="I'm a Game Developer in Progress 🐺",
         color=discord.Color.blue())
         embed.set_thumbnail(url="https://cdn-icons-png.flaticon.com/512/25/25231.png")
         await message.channel.send(embed=embed)
@@ -230,14 +218,6 @@ async def responses(message, userid, user):
         await message.channel.send("Hey " +f"<@{userid}>"+ ", if you're having issues with login you can either talk to us about it in the #support(https://discord.com/channels/961277429383594014/961277429383594022)  channel or send us an email at community-management@bacalhauinthesky.education")
     if message.content.startswith("ping"):
         await message.channel.send("pong 🏓")
-    if how_to:
-        await message.channel.send("If you're having platform related issues, you cant try to find a solution in the wiki, here is the link 🌍: ")
-        embed=discord.Embed(title="bacalhau Wiki",
-        url="https://demo.bacalhauinthesky.education/learn/wiki/digital-experience-part-time-april-2022", 
-        description="Hey " + f"<@{userid}>" + ", here you have the bacalhau In The Sky Platform wiki and FAQs", 
-        color=discord.Color.blue())
-        embed.set_thumbnail(url="https://media-exp1.licdn.com/dms/image/C4D0BAQE6Qyi6gobkNg/company-logo_200_200/0/1635152143581?e=2147483647&v=beta&t=JNhdpt_fKozF3-AnxO9T9b3DOsrZN2aJsQjXJxWFwcY")
-        await message.channel.send(f"<@{userid}>", embed=embed)
     if user in Admins and message.content.startswith("bacalhau.purge") or message.content.startswith("Bacalhau.purge"):
         await message.channel.send("🐟")
         time.sleep(1)
@@ -246,9 +226,19 @@ async def responses(message, userid, user):
         await message.channel.send("Hey, " + f"<@{userid}>" + ", only admins can use that command!")
     if "fuck bacalhau" in message.content:
         await message.channel.send("<:middlepepe:977715133491064952>")
-    
+    if message.content.startswith("bacalhau.level"):
+        with open("Log", 'r') as f:
+            data = f.read()
+            count = data.count(user)
+            level = int(count / 10)
+            await message.channel.send("Heyyy " + f"<@{userid}>" + ", you're currently at level **" + str(level) + "**. \nThe more messages you send, the higher your level gets!")
+                
+
 @client.event
 async def on_message(message):
+    activity = discord.Game(name="Pro Fishing Simulator")
+    await client.change_presence(status=discord.Status.idle, activity=activity)
+    await client.change_presence(status=discord.Status.online)
     threading.Thread(target=timer).start()
     user = message.author.name
     userid = message.author.id
@@ -268,12 +258,12 @@ async def on_message(message):
             print(user)
     except:
         print("Couldn't get username")
-    if user == "El Madeirense" and message.content.startswith("bacalhau.STOP!") or message.content.startswith("Bacalhau.STOP!") or message.content.startswith("bacalhau, STOP!") or message.content.startswith("bacalhau, STOP!"):
+    if user in Admins and message.content.startswith("bacalhau.STOP!") or message.content.startswith("Bacalhau.STOP!") or message.content.startswith("bacalhau, STOP!") or message.content.startswith("bacalhau, STOP!"):
         await message.channel.send("<:codhold:977712053101928448>")
         stop = True
         time.sleep(1)
         exit()
-    elif user != "El Madeirense" and message.content.startswith("bacalhau.STOP!") or message.content.startswith("bacalhau.STOP!") or message.content.startswith("bacalhau, STOP!") or message.content.startswith("bacalhau, STOP!"):
+    elif user not in Admins and message.content.startswith("bacalhau.STOP!") or message.content.startswith("bacalhau.STOP!") or message.content.startswith("bacalhau, STOP!") or message.content.startswith("bacalhau, STOP!"):
         await message.channel.send("Hey " + f"<@{userid}>" + ", only admins can use that command!")
     try:
         await responses(message, userid, user)
