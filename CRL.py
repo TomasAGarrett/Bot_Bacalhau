@@ -6,7 +6,11 @@
 #    By: jbuny-fe <jbuny-fe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/30 11:31:29 by jbuny-fe          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2022/05/26 15:40:29 by jbuny-fe         ###   ########.fr        #
+=======
+#    Updated: 2022/05/26 15:17:08 by jbuny-fe         ###   ########.fr        #
+>>>>>>> b9907d0b6c50c32bd2fd913afec82767f426f8f6
 #                                                                              #
 # **************************************************************************** #
 
@@ -226,10 +230,14 @@ async def responses(message, userid, user):
                 break
             else:
                 await message.channel.send(msg)
+            level = int(count / 10)
+            await message.channel.send("Heyyy " + f"<@{userid}>" + ", you're currently at level **" + str(level) + "**. \nThe more messages you send, the higher your level gets!")
                 
 
 @client.event
 async def on_message(message):
+    activity = discord.Game(name="Pro Fishing Simulator")
+    await client.change_presence(status=discord.Status.idle, activity=activity)
     # Setting `Playing ` status
     #await bot.change_presence(activity=discord.Game(name="a game"))
     # Setting `Streaming ` status
@@ -240,6 +248,7 @@ async def on_message(message):
     #await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="a movie"))
     activity = discord.Game(name="Master Baiter")
     await client.change_presence(status=discord.Status.online, activity=activity)
+    await client.change_presence(status=discord.Status.online)
     threading.Thread(target=timer).start()
     user = message.author.name
     userid = message.author.id
