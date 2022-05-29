@@ -226,15 +226,10 @@ async def responses(message, userid, user):
                 await message.channel.send("Chat with terminal has ended")
                 break
             else:
-                await message.channel.send(msg)
-            level = int(count / 10)
-            await message.channel.send("Heyyy " + f"<@{userid}>" + ", you're currently at level **" + str(level) + "**. \nThe more messages you send, the higher your level gets!")
-                
+                await message.channel.send(msg)    
 
 @client.event
 async def on_message(message):
-    activity = discord.Game(name="Pro Fishing Simulator")
-    await client.change_presence(status=discord.Status.idle, activity=activity)
     # Setting `Playing ` status
     #await bot.change_presence(activity=discord.Game(name="a game"))
     # Setting `Streaming ` status
@@ -245,7 +240,6 @@ async def on_message(message):
     #await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="a movie"))
     activity = discord.Game(name="Master Baiter")
     await client.change_presence(status=discord.Status.online, activity=activity)
-    await client.change_presence(status=discord.Status.online)
     threading.Thread(target=timer).start()
     user = message.author.name
     userid = message.author.id
