@@ -7,10 +7,13 @@
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/30 11:31:29 by jbuny-fe          #+#    #+#              #
 #    Updated: 2022/05/26 15:40:29 by jbuny-fe         ###   ########.fr        #
+#    Updated: 2022/05/26 15:17:08 by jbuny-fe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import discord
+from discord.ext import commands
+from config import *
 import datetime
 import os
 import sys
@@ -19,6 +22,8 @@ import toml
 import threading
 import requests
 import json
+
+bot = commands.Bot(command_prefix="bacalhau", description="Bacalhau_demolhado")
 
 client = discord.Client()
 thanks = ["thank you", "thank u", "thanks", "thx", "obrigado", "obrigada"]
@@ -50,6 +55,19 @@ def timer():  # starts once the program is started
             s = 0
             f.write('seconds = ' + str(int(s)) + '\n')
             f.close()
+
+# @bot.event
+# async def on_raw_reaction_add(message):
+#     ourMessageID = 980551346417725550
+#     if ourMessageID == payload.message_id:
+#         member = payload.member
+#         guild = member.guild
+#         emoji = message.emoji.name
+#         if emoji == "🖕":
+#             role = discord.utils.get(guild.roles, name="Weebs")
+#         elif emoji == "👍":
+#             role = discord.utils.get(guild.roles, name="Master baiters")
+#         await member.add_role(role)    
 
 @client.event
 async def on_ready():
@@ -215,7 +233,10 @@ async def responses(message, userid, user):
             data = f.read()
             count = data.count(user)
             level = int(count / 30) 
-            await message.channel.send("Heyyy " + f"<@{userid}>" + ", you're currently at level **" + str(level) + "**. \nThe more messages you send, the higher your level gets!")
+            msg = await message.channel.send("Heyyy " + f"<@{userid}>" + ", you're currently at level **" + str(level) + "**. \nThe more messages you send, the higher your level gets!")
+            await msg.add_reaction("👍")
+            await msg.add_reaction("🖕")
+            #await message.add_reaction("😱")
     if "Nice" in message.content or "nice" in message.content:
         await message.channel.send("Podes crer que é nice!")
     if message.content.startswith("bacalhau.terminal"):
@@ -225,8 +246,8 @@ async def responses(message, userid, user):
                 await message.channel.send("Chat with terminal has ended")
                 break
             else:
-                await message.channel.send(msg)    
-
+                await message.channel.send(msg)
+               
 @client.event
 async def on_message(message):
     # Setting `Playing ` status
