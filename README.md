@@ -1,35 +1,92 @@
-# Bot_Bacalhau
-Bot para o clube de game dev da 42 Lisboa
+# Deepthought studios discord bot
 
-What we want:
+Bot Bacalhau was designed with the intention of fully moderating a discord server and helping me learn a new programming language, python.
 
-Game Dev Discord Requisitions
-- [ ] Sistema de niveis
-- [ ] parte privada para a board(links, polls e general)
-- [ ] sitio para as reuniões
-- [ ] announcements (para o whatsapp e email)
-- [ ] General (Social events, polls, sugestions, artwork showcase)
-- [ ] Canal/categoria para cada um dos jogos
-- [ ] O bocal não tem acesso a: reuniões, parte privada
+```bash
+- Bot response with 🖕por MP se pessoa reagir com 🖕  
+- Calendário
+- Sistema de níveis
+- Parte privada para a board ( links, polls e general )
+- Sítio para as reuniões
+- General ( Social events, polls, suggestions, artwork showcase )
+- Canal / categoria para cada um dos jogos
+- O bocal não ter acesso a: reuniões, parte privada → necessário roles
+- Roles
+```
 
-Metroidvania
-- [ ] pixel art
-- [ ] game mechanics
-- [ ] Coding
-- [ ] Concept art
-- [ ] Music
-- [ ] General
+## Available commands
 
-TRPG
-- [ ] concept art
-- [ ] game art
-- [ ] coding
-- [ ] music
-- [ ] game mechanics
-- [ ] General
+```python
+import commands
+
+# hello there ; Hello there
+- General Kenobi
+
+# bacalhau.help
+- List all available commands
+
+# bacalhau.uptime
+- Tells you how long the bot has been alive in seconds
+
+# bacalhau.takefive
+- Takes a five minute break (admin only)
+
+# bacalhau.calendar
+- List all events for the club
+
+# bacalhau.git
+- Shows developer gits
+
+# bacalhau.norris
+- Random Chuck Norris fact
+
+# bacalhau.?
+- checks if bot is alive
+
+# bacalhau.level
+- Shows your current level
+
+# thanks bacalhau
+- Responds with emoji
+
+# sorry bacalhau
+- Responds with "No problem, User . Don't worry about it!"
+
+# gm bacalhau
+Responds with "Good morning!! :codemoji:"
+
+# ping
+- pong
+
+# hey bacalhau
+- Responds with "Hey there! User. Whats up? 👋"
 
 
-Useful links:
+Admin only commands
 
-Discord.py API:
-https://discordpy.readthedocs.io/en/stable/api.html#discord.Member.joined_at
+# bacalhau.purge
+- Deletes all messages of expecific room
+
+# bacalhau.log-file
+- Shows all logs from bot
+
+# bacalhau.reboot
+- Reboots bot
+
+# bacalhau.STOP!
+- Disables bot completely
+
+# bacalhau, go to sleep
+- Bot goes to sleep for 5 mins
+```
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
