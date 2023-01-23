@@ -1,4 +1,4 @@
-# Deepthought studios discord bot
+# Deepthought studios discord server bot
 
 Bot Bacalhau was designed with the intention of fully moderating a discord server and helping me learn a new programming language, python.
 
